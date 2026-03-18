@@ -2,6 +2,7 @@
 using namespace std;
 
 int main() {
+    // Declaración de variables
     int reto1, reto2, reto3;
     int errores, tiempo;
     char extra, copia;
