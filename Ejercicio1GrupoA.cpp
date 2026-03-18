@@ -9,7 +9,7 @@ int main() {
 
     int puntajeBase, penalizacion, bonificacion = 0, puntajeFinal;
     string nivel, observacion;
-
+    //INGRESO DE DATOS
     cout << "Ingrese puntaje reto 1: ";
     cin >> reto1;
     cout << "Ingrese puntaje reto 2: ";
