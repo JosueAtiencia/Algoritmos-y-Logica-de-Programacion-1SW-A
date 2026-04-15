@@ -40,18 +40,7 @@ public:
         dias = d;
     }
 
-    double calcularMulta(){
-        double multa = 0;
-
-        if(dias >= 1){
-            multa = 1.25;
-        }
-
-        for(int i = 2; i <= dias; i++){
-            multa += 0.75;
-        }
-
-        return multa;
+    
     }
 
     void mostrar(){
