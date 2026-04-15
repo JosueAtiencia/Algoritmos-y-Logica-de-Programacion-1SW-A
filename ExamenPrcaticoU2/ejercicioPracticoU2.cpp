@@ -62,7 +62,108 @@ public:
     }
 };
 
+//================= VARIABLES =================
+vector<Equipo> equipos;
+vector<Prestamo> prestamos;
 
+//================= FUNCIONES GRUPO A =================
+void registrarEquipo(){
+    string c, n, e;
+    cout << "Codigo: "; cin >> c;
+    cout << "Nombre: "; cin >> n;
+    cout << "Estado (disponible/mantenimiento): "; cin >> e;
+
+    equipos.push_back(Equipo(c,n,e));
+}
+
+void mostrarEquipos(){
+    for(int i = 0; i < equipos.size(); i++){
+        equipos[i].mostrar();
+        cout << "-------------------\n";
+    }
+}
+
+void registrarPrestamo(){
+    string ced, cod;
+    int dias;
+
+    cout << "Cedula: "; cin >> ced;
+    cout << "Codigo equipo: "; cin >> cod;
+    cout << "Dias: "; cin >> dias;
+
+    // validacion simple
+    bool encontrado = false;
+    for(int i = 0; i < equipos.size(); i++){
+        if(equipos[i].getCodigo() == cod && equipos[i].getEstado() == "disponible"){
+            encontrado = true;
+        }
+    }
+
+    if(encontrado){
+        prestamos.push_back(Prestamo(ced,cod,dias));
+        cout << "Prestamo registrado\n";
+    } else {
+        cout << "Equipo no disponible\n";
+    }
+}
+
+void mostrarPrestamos(){
+    for(int i = 0; i < prestamos.size(); i++){
+        prestamos[i].mostrar();
+        cout << "-------------------\n";
+    }
+}
+
+//================= AHORCADO =================
+void jugarAhorcado(){
+    vector<string> palabras = {
+        "laptop", "proyector", "tablet", "robotica",
+        "mouse", "teclado", "cable", "disponible",
+        "mantenimiento", "prestamo"
+    };
+
+    string palabra = palabras[rand() % palabras.size()];
+    string progreso(palabra.length(), '_');
+
+    int intentos = 6;
+    string letrasUsadas = "";
+
+    while(intentos > 0 && progreso != palabra){
+        cout << "\nPalabra: " << progreso << endl;
+        cout << "Intentos: " << intentos << endl;
+        cout << "Usadas: " << letrasUsadas << endl;
+
+        char letra;
+        cout << "Ingrese una letra: ";
+        cin >> letra;
+
+        // validar repetidas
+        if(letrasUsadas.find(letra) != string::npos){
+            cout << "Letra repetida\n";
+            continue;
+        }
+
+        letrasUsadas += letra;
+        bool acierto = false;
+
+        for(int i = 0; i < palabra.length(); i++){
+            if(palabra[i] == letra){
+                progreso[i] = letra;
+                acierto = true;
+            }
+        }
+
+        if(!acierto){
+            intentos--;
+        }
+    }
+
+    if(progreso == palabra){
+        cout << "\nGANASTE! La palabra era: " << palabra << endl;
+    } else {
+        cout << "\nPERDISTE! Era: " << palabra << endl;
+    }
+}
 //================= MENU GRUPO A =================
 void menuGrupoA(){
     int op;
