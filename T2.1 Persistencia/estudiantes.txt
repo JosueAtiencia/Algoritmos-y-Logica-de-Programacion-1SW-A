@@ -1,0 +1,5 @@
+Nombre: Josue Atiencia
+Edad: 18
+Carrera: Software
+Promedio: 7.2
+------------------------
